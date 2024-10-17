@@ -22,18 +22,18 @@
 </head>
 <body>
 	<h1>Are you sure you want to delete this user?</h1>
-	<?php $getStudentById = getStudentById($pdo, $_GET['student_id']); ?>
-	<form action="core/handleForms.php?student_id=<?php echo $_GET['student_id']; ?>" method="POST">
+	<?php $getStudentById = getId($pdo, $_GET['id']); ?>
+	<form action="core/handleForms.php?id=<?php echo $_GET['id']; ?>" method="POST">
 
-		<div class="studentContainer" style="border-style: solid; 
+		<div class="Container" style="border-style: solid; 
 		font-family: 'Arial';">
-			<p>First Name: <?php echo $getStudentById['first_name']; ?></p>
-			<p>Last Name: <?php echo $getStudentById['last_name']; ?></p>
-			<p>Birthdate: <?php echo $getStudentById['birthdate']; ?></p>
-			<p>Age: <?php echo $getStudentById['age']; ?></p>
-			<p>Address: <?php echo $getStudentById['address']; ?></p>
-			<p>Position: <?php echo $getStudentById['aposition']; ?></p>
-			<p>Salary: <?php echo $getStudentById['salary']; ?></p>
+			<p>First Name: <?php echo $getyId['first_name']; ?></p>
+			<p>Last Name: <?php echo $getId['last_name']; ?></p>
+			<p>Birthdate: <?php echo $getId['birthdate']; ?></p>
+			<p>Age: <?php echo $getId['age']; ?></p>
+			<p>Address: <?php echo $getId['address']; ?></p>
+			<p>Position: <?php echo $getId['position']; ?></p>
+			<p>Salary: <?php echo $getId['salary']; ?></p>
 			<input type="submit" name="deleteBtn" value="Delete">
 		</div>
 	</form>
