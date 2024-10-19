@@ -46,7 +46,7 @@
 	    <th>Salary</th>
 	  </tr>
 
-	  <?php $seeAllStudentRecords = seeAllRecords($pdo); ?>
+	  <?php $seeAllRecords = seeAllRecords($pdo); ?>
 	  <?php foreach ($seeAllRecords as $row) { ?>
 	  <tr>
 	  	<td><?php echo $row['id']; ?></td>
