@@ -1,5 +1,5 @@
-<?php require_once 'core/dbConfig.php'; ?>
-<?php require_once 'core/models.php'; ?>
+<?php require_once 'dbConfig.php'; ?>
+<?php require_once 'models.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,7 @@
 </head>
 <body>
 	<h3>Welcome to the Sofware Engineering Co. Input your details here to register</h3>
-	<form action="core/handleForms.php" method="POST">
+	<form action="handleForms.php" method="POST">
 		<p><label for="firstName">First Name</label> <input type="text" name="firstName"></p>
 		<p><label for="lastName">Last Name</label> <input type="text" name="lastName"></p>
 		<p><label for="birthdate">Birthdate</label> <input type="text" name="birthdate"></p>
