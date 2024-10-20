@@ -5,7 +5,6 @@ require_once 'models.php';
 $error = '';
 $successMessage = '';
 
-// Handle insertion
 if (isset($_POST['insertNewEngineerBtn'])) {
     $firstName = trim($_POST['firstName']);
     $lastName = trim($_POST['lastName']);
@@ -28,7 +27,6 @@ if (isset($_POST['insertNewEngineerBtn'])) {
     }
 }
 
-// Handle update
 if (isset($_POST['editEngineerBtn'])) {
     $engineer_id = $_GET['engineer_id'];
     $firstName = trim($_POST['firstName']);
@@ -54,7 +52,6 @@ if (isset($_POST['editEngineerBtn'])) {
     }
 }
 
-// Handle deletion
 if (isset($_POST['deleteEngineerBtn'])) {
     $query = deleteAnEngineer($pdo, $_GET['engineer_id']);
     if ($query) {
