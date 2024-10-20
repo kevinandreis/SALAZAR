@@ -1,5 +1,5 @@
-<?php require_once 'dbConfig.php'; ?>
-<?php require_once 'models.php'; ?>
+<?php require_once 'core/dbConfig.php'; ?>
+<?php require_once 'core/models.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,51 +21,64 @@
 	</style>
 </head>
 <body>
-	<h3>Welcome to the Sofware Engineering Co. Input your details here to register</h3>
-	<form action="handleForms.php" method="POST">
-		<p><label for="firstName">First Name</label> <input type="text" name="firstName"></p>
-		<p><label for="lastName">Last Name</label> <input type="text" name="lastName"></p>
-		<p><label for="birthdate">Birthdate</label> <input type="text" name="birthdate"></p>
-		<p><label for="age">Age</label> <input type="text" name="age"></p>
-		<p><label for="address">Address</label> <input type="text" name="address"></p>
-		<p><label for="position">Position</label> <input type="text" name="position"></p>
-		<p><label for="salary">Salary</label> <input type="text" name="salary">
-			<input type="submit" name="insertBtn">
-		</p>
-	</form>
+    <h1>Software Engineer Registration</h1>
 
-	<table style="width:50%; margin-top: 50px;">
-	  <tr>
-	    <th>ID</th>
-	    <th>First Name</th>
-	    <th>Last Name</th>
-	    <th>Birthdate</th>
-	    <th>Age</th>
-	    <th>Address</th>
-	    <th>Position</th>
-	    <th>Salary</th>
-	  </tr>
+    <?php if (!empty($successMessage)): ?>
+        <p style="color: green;"><?php echo $successMessage; ?></p>
+    <?php endif; ?>
 
-	  <?php $seeAllRecords = seeAllRecords($pdo); ?>
-	  <?php foreach ($seeAllRecords as $row) { ?>
-	  <tr>
-	  	<td><?php echo $row['id']; ?></td>
-	  	<td><?php echo $row['first_name']; ?></td>
-	  	<td><?php echo $row['last_name']; ?></td>
-	  	<td><?php echo $row['birthdate']; ?></td>
-	  	<td><?php echo $row['age']; ?></td>
-	  	<td><?php echo $row['address']; ?></td>
-	  	<td><?php echo $row['position']; ?></td>
-	  	<td><?php echo $row['salary']; ?></td>
-	  	<td>
-	  		<a href="editse.php?id=<?php echo $row['id'];?>">Edit</a>
-	  		<a href="deletese.php?id=<?php echo $row['id'];?>">Delete</a>
-	  	</td>
-	  </tr>
-	  <?php } ?>
-	</table>
+    <?php if (!empty($error)): ?>
+        <p style="color: red;"><?php echo $error; ?></p>
+    <?php endif; ?>
 
+    <h2>Add New Software Engineer</h2>
+    <form action="../core/handleForms.php" method="POST">
+        <p><label for="firstName">First Name</label> <input type="text" name="firstName" required></p>
+        <p><label for="lastName">Last Name</label> <input type="text" name="lastName" required></p>
+        <p><label for="birthdate">Birthdate</label> <input type="date" name="birthdate" required></p>
+        <p><label for="age">Age</label> <input type="number" name="age" required></p>
+        <p><label for="address">Address</label> <input type="text" name="address" required></p>
+        <p><label for="position">Position</label> <input type="text" name="position" required></p>
+        <p><label for="salary">Salary</label> <input type="number" step="0.01" name="salary" required></p>
+        <input type="submit" name="insertNewEngineerBtn" value="Register">
+    </form>
 
-
+    <h2>Registered Software Engineers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birthdate</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $engineers = seeAllEngineerRecords($pdo);
+            foreach ($engineers as $engineer):
+            ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($engineer['EngineerID']); ?></td>
+                    <td><?php echo htmlspecialchars($engineer['FirstName']); ?></td>
+                    <td><?php echo htmlspecialchars($engineer['LastName']); ?></td>
+                    <td><?php echo htmlspecialchars($engineer['Birthdate']); ?></td>
+                    <td><?php echo htmlspecialchars($engineer['Age']); ?></td>
+                    <td><?php echo htmlspecialchars($engineer['Address']); ?></td>
+                    <td><?php echo htmlspecialchars($engineer['Position']); ?></td>
+                    <td><?php echo htmlspecialchars($engineer['Salary']); ?></td>
+                    <td>
+                        <a href="editEngineer.php?engineer_id=<?php echo $engineer['EngineerID']; ?>">Edit</a>
+                        <a href="deleteEngineer.php?engineer_id=<?php echo $engineer['EngineerID']; ?>">Delete</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </body>
 </html>
