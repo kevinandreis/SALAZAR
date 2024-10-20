@@ -1,6 +1,6 @@
 <?php
-require_once 'core/dbConfig.php';
-require_once 'core/models.php';
+require_once 'dbConfig.php';
+require_once 'models.php';
 
 $error = '';
 $successMessage = '';
@@ -54,6 +54,7 @@ if (isset($_POST['editEngineerBtn'])) {
     }
 }
 
+// Handle deletion
 if (isset($_POST['deleteEngineerBtn'])) {
     $query = deleteAnEngineer($pdo, $_GET['engineer_id']);
     if ($query) {
@@ -65,5 +66,6 @@ if (isset($_POST['deleteEngineerBtn'])) {
     }
 }
 
+// Get all records for display
 $seeAllEngineerRecords = seeAllEngineerRecords($pdo);
 ?>
